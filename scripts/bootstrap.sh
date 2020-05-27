@@ -1,4 +1,4 @@
-  #!/bin/sh
+ #!/bin/sh
 
 # This installs the base instructions up to the point of joining / creating a cluster
 
