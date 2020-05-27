@@ -55,4 +55,24 @@ sudo cp  /boot/firmware/nobtcmd.txt /boot/cmdline_backup.txt.orig
 orig="$(head -n1 /boot/firmware/nobtcmd.txt ) ipv6.disable=1 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1"
 echo $orig | sudo tee /boot/firmware/nobtcmd.txt
 
+cat <<EOF | tee ~/.bash_profile
+# .bash_profile
+if [ -f ~/.bashrc ]; then
+. ~/.bashrc
+fi
+EOF
+
+cat <<EOF | tee ~/.bashrc
+# vim: ft=sh
+alias ll='ls -al'
+alias l='ls -l'
+# No brainer, default to Vim
+export EDITOR="vim"
+# Color LS output to differentiate between directories and files
+export LS_OPTIONS="--color=auto"
+export CLICOLOR="Yes"
+export LSCOLOR=""
+export XAUTHORITY=~/.Xauthority
+export DISPLAY=:1
+EOF
 echo Please reboot
