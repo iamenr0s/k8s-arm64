@@ -4,7 +4,7 @@
 DOMAIN=`echo $DOMAIN_NAME`
 
 cat <<EOF | sudo tee -a /etc/hosts
-192.168.254.10  master.${DOMAIN_NAME} master
+192.168.254.10  master.${DOMAIN} master
 192.168.254.11  worker01.${DOMAIN} worker01
 192.168.254.12  worker02.${DOMAIN} worker02
 192.168.254.13  worker03.${DOMAIN} worker03
