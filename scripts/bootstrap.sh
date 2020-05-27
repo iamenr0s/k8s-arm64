@@ -1,12 +1,13 @@
  #!/bin/sh
 
 # This installs the base instructions up to the point of joining / creating a cluster
+DOMAIN=`echo $DOMAIN_NAME`
 
 cat <<EOF | sudo tee -a /etc/hosts
-192.168.254.10  master.`echo $DOMAIN_NAME` master
-192.168.254.11  worker01.`echo $DOMAIN_NAME` worker01
-192.168.254.12  worker02.`echo $DOMAIN_NAME` worker02
-192.168.254.13  worker03.`echo $DOMAIN_NAME` worker03
+192.168.254.10  master.${DOMAIN_NAME} master
+192.168.254.11  worker01.${DOMAIN} worker01
+192.168.254.12  worker02.${DOMAIN} worker02
+192.168.254.13  worker03.${DOMAIN} worker03
 EOF
 
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
@@ -75,4 +76,5 @@ export LSCOLOR=""
 export XAUTHORITY=~/.Xauthority
 export DISPLAY=:1
 EOF
+
 echo Please reboot
