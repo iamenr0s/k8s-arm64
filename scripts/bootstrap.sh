@@ -1,6 +1,7 @@
  #!/bin/sh
 
 # This installs the base instructions up to the point of joining / creating a cluster
+DOMAIN_NAME=`hostname -d`
 
 cat <<EOF | sudo tee -a /etc/hosts
 192.168.254.10  master.${DOMAIN_NAME} master
