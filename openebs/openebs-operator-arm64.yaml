@@ -435,6 +435,11 @@ data:
         name: smart probe
         state: true
     filterconfigs:
+      - key: path-filter
+        name: path filter
+        state: true
+        include: "/dev/sda"
+        exclude: ""         
       - key: os-disk-exclude-filter
         name: os disk exclude filter
         state: true
@@ -447,7 +452,7 @@ data:
       - key: path-filter
         name: path filter
         state: true
-        include: "/dev/sda  "
+        include: ""
         exclude: "loop,/dev/fd0,/dev/sr0,/dev/ram,/dev/dm-,/dev/md"
 ---
 apiVersion: apps/v1
