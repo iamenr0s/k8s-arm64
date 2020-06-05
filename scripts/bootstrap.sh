@@ -42,7 +42,7 @@ sudo systemctl restart docker
 sudo swapoff -a
 sudo echo "vm.swappiness=0" | sudo tee -a /etc/sysctl.conf
 
-sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+sudo apt-get update
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
@@ -51,9 +51,9 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
-echo Adding " cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory" to /boot/cmdline.txt
-sudo cp  /boot/firmware/nobtcmd.txt /boot/cmdline_backup.txt.orig
-orig="$(head -n1 /boot/firmware/nobtcmd.txt ) ipv6.disable=1 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1"
+echo Adding " cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory" to /boot/firmware/nobtcmd.txt
+sudo cp  /boot/firmware/cmdline.txt /boot/firmware/cmdline.txt.backup
+orig="$(head -n1 /boot/firmware/cmdline.txt ) ipv6.disable=1 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1"
 echo $orig | sudo tee /boot/firmware/nobtcmd.txt
 
 cat <<EOF | tee ~/.bash_profile
