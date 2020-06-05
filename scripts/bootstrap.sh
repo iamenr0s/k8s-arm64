@@ -54,7 +54,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 echo Adding " cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory" to /boot/firmware/nobtcmd.txt
 sudo cp  /boot/firmware/cmdline.txt /boot/firmware/cmdline.txt.backup
 orig="$(head -n1 /boot/firmware/cmdline.txt ) ipv6.disable=1 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1"
-echo $orig | sudo tee /boot/firmware/nobtcmd.txt
+echo $orig | sudo tee /boot/firmware/cmdline.txt
 
 cat <<EOF | tee ~/.bash_profile
 # .bash_profile
