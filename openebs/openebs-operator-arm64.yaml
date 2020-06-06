@@ -113,7 +113,7 @@ spec:
   template:
     metadata:
       labels:
-        name: maya-apiserver
+      - name: maya-apiserver
         openebs.io/component-name: maya-apiserver
         openebs.io/version: dev
     spec:
