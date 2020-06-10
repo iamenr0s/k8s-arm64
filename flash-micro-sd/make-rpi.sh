@@ -34,13 +34,15 @@ cat ~/.ssh/id_rsa.pub > /mnt/rpi/root/home/ubuntu/.ssh/authorized_keys
 chown -R 1000:1000 /mnt/rpi/root/home/ubuntu
 
 # Disable password login
-sed -ie s/#PasswordAuthentication\ yes/PasswordAuthentication\ no/g /mnt/rpi/root/etc/ssh/sshd_config
+sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /mnt/rpi/root/etc/ssh/sshd_config
+
+# Preserve hostname
+sed -i 's/preserve_hostname.*/preserve_hostname: true/g' /mnt/rpi/root/etc/cloud/cloud.cfg
 
 echo "Setting hostname: $1"
-sed -ie s/ubuntu/$1/g /mnt/rpi/root/etc/hostname
+sed -i 's/ubuntu/$1/g' /mnt/rpi/root/etc/hostname
 
 # Set static IP
-
 echo "network: {config: disabled}" > /mnt/rpi/root/etc/cloud/cloud.cfg.d/99-custom-networking.cfg
 sed s/100/$2/g  99_config.yaml> /mnt/rpi/root/etc/netplan/99_config.yaml
 
